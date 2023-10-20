@@ -12,6 +12,8 @@ dependencies:
   cloud_firestore: 4.11.0
   google_fonts: 6.1.0
   material_design_icons_flutter: 7.0.7296
+  flutter_launcher_icons: 0.13.1
+  flutter_native_splash: 2.3.4
   flutter: 
     sdk: flutter
 
@@ -21,5 +23,26 @@ dev_dependencies:
     sdk: flutter
 
 flutter: 
+  assets: 
+    - assets/images/
+    - assets/icon/
   uses-material-design: true
+
+flutter_launcher_icons: 
+  android: launcher_icon
+  image_path: assets/icon/logo_io.png
+  web: 
+    image_path: assets/icon/logo_io.png
+    background_color: '#hexcode'
+    theme_color: '#hexcode'
+    generate: true
+  windows: 
+    image_path: assets/icon/logo_io.png
+    generate: true
+    icon_size: 48
+  macos: 
+    image_path: assets/icon/logo_io.png
+    generate: true
+  ios: true
+  min_sdk_android: 21
 

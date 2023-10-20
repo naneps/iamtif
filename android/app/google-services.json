@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "626721926740",
+    "project_id": "iamtif",
+    "storage_bucket": "iamtif.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626721926740:android:0593abcfd368ca689187c1",
+        "android_client_info": {
+          "package_name": "com.example.iamtif"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKx58mnL6AU768l2aZkM28dY7m1vFGMjY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

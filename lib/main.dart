@@ -9,7 +9,7 @@ void main() {
   runApp(
     GetMaterialApp(
       title: "iamtif",
-      initialRoute: Routes.AUTH,
+      initialRoute: Routes.CORE,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
       theme: ThemeApp().themeData,

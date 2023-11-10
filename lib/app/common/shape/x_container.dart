@@ -13,7 +13,7 @@ class XContainer extends AnimatedContainer {
     Color? color,
     Decoration? decoration,
     Decoration? foregroundDecoration,
-    BoxConstraints constraints = const BoxConstraints(),
+    BoxConstraints? constraints,
     Matrix4? transform,
     AlignmentGeometry? alignment,
     Clip? clipBehavior,

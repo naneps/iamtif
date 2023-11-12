@@ -73,6 +73,7 @@ class XTextField extends StatelessWidget {
           onPressed: onPressSuffix,
           icon: Icon(
             suffixIcon,
+            color: ThemeApp().darkColor,
           ),
         ),
         prefixIcon: prefixIcon != null

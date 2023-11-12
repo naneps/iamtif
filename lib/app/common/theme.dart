@@ -4,6 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 class ThemeApp {
   final primaryColor = const Color(0xfff77110);
   final secondaryColor = const Color(0xffecdbcf);
+  final dangerColor = const Color(0xffe74c3c);
+  final successColor = const Color(0xff2ecc71);
+  final warningColor = const Color(0xfff1c40f);
+  final infoColor = const Color(0xff3498db);
+
   final darkColor = const Color(0xff080808);
   final grayColor = const Color(0xff7c7c7c);
   final lightColor = const Color(0xfffafafa);

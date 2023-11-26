@@ -67,6 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '626721926740',
     projectId: 'iamtif',
     storageBucket: 'iamtif.appspot.com',
+    androidClientId: '626721926740-dgksng02n3o7b19lap9boi2t1l4ofrrf.apps.googleusercontent.com',
+    iosClientId: '626721926740-1qb54sn5bhejr72vs7u83r64nd7o3nk6.apps.googleusercontent.com',
     iosBundleId: 'com.example.iamtif',
   );
 
@@ -76,6 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '626721926740',
     projectId: 'iamtif',
     storageBucket: 'iamtif.appspot.com',
+    androidClientId: '626721926740-dgksng02n3o7b19lap9boi2t1l4ofrrf.apps.googleusercontent.com',
+    iosClientId: '626721926740-tkhhvgtb7av372jmm1p28ruaqo6g1h2t.apps.googleusercontent.com',
     iosBundleId: 'com.example.iamtif.RunnerTests',
   );
 }

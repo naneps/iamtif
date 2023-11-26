@@ -82,7 +82,7 @@ class AuthView extends GetView<AuthController> {
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   constraints: BoxConstraints(
                     minHeight: 200,
-                    maxHeight: controller.isLogin.value ? 390 : 480,
+                    maxHeight: controller.isLoginForm.value ? 390 : 480,
                   ),
                   decoration: BoxDecoration(
                     color: ThemeApp().lightColor,

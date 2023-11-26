@@ -2,18 +2,23 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iamtif/app/common/logger.dart';
 import 'package:iamtif/app/common/x_notifier.dart';
 import 'package:iamtif/app/models/user_model.dart';
 import 'package:iamtif/app/services/firebase/firebase_auth_service.dart';
 
 class AuthController extends GetxController with GetTickerProviderStateMixin {
-  final isLogin = true.obs;
+  final isLoginForm = true.obs;
   late final tabController;
   late final scrollController;
   RxBool isPasswordVisible = true.obs;
   RxBool isLoading = false.obs;
   final authService = Get.find<FirebaseAuthService>();
-  Rx<UserModel> user = Rx<UserModel>(UserModel());
+  Rx<UserModel> user = Rx<UserModel>(UserModel(
+    name: '',
+    email: '',
+    password: '',
+  ));
   final registerFormKey = GlobalKey<FormState>();
   final loginFormKey = GlobalKey<FormState>();
   //TODO: Implement AuthController
@@ -26,11 +31,10 @@ class AuthController extends GetxController with GetTickerProviderStateMixin {
       length: 2,
       vsync: this,
       initialIndex: 0,
-      animationDuration: const Duration(
-        milliseconds: 700,
-      ),
     );
-
+    tabController.addListener(() {
+      isLoginForm.value = tabController.index == 0;
+    });
     scrollController = ScrollController();
   }
 
@@ -43,24 +47,53 @@ class AuthController extends GetxController with GetTickerProviderStateMixin {
           user.value,
           onLoading: isLoading,
           onSuccess: (usr) {
+            // Logger.info("Sign up with email and password success");
             XNotifier.snackMessage(
               title: 'Dah Berhasil',
-              messages: 'Alooo, ${usr.displayName}!',
+              messages: 'Alooo!',
               type: XNotifierType.success,
-              seconds: 0.7,
             );
             tabController.animateTo(0);
-            user.update((user) {
-              user!.name = usr.displayName!;
-              user.email = usr.email!;
-            });
           },
           onError: (error) {
+            Logger.error("Error sign up with email and password: $error");
             XNotifier.snackMessage(
               title: 'Error',
               messages: error,
               type: XNotifierType.error,
-              seconds: 0.7,
+            );
+          },
+        );
+      } catch (e) {
+        print("catch on controller signup $e");
+      } finally {
+        isLoading(false);
+      }
+    }
+  }
+
+  void signIn() async {
+    if (loginFormKey.currentState!.validate()) {
+      loginFormKey.currentState!.save();
+      try {
+        isLoading(true);
+        await authService.signInWithEmailAndPassword(
+          userModel: user.value,
+          onLoading: isLoading,
+          onSuccess: (usr) {
+            XNotifier.snackMessage(
+              title: 'Dah Berhasil',
+              messages: 'Alooo Gess!',
+              type: XNotifierType.success,
+            );
+          },
+          onError: (error) {
+            print("====================================");
+            print("Error sign in with email and password: $error");
+            XNotifier.snackMessage(
+              title: 'Error',
+              messages: error,
+              type: XNotifierType.error,
             );
           },
         );
@@ -69,7 +102,6 @@ class AuthController extends GetxController with GetTickerProviderStateMixin {
           title: 'Error',
           messages: e.toString(),
           type: XNotifierType.error,
-          seconds: 0.7,
         );
       } finally {
         isLoading(false);

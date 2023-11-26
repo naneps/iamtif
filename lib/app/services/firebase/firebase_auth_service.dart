@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:iamtif/app/common/logger.dart';
 import 'package:iamtif/app/models/user_model.dart';
+import 'package:iamtif/app/routes/app_pages.dart';
 
 class FirebaseAuthService extends GetxService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -10,13 +13,17 @@ class FirebaseAuthService extends GetxService {
   final CollectionReference usersRef =
       FirebaseFirestore.instance.collection('users');
 
-  Rx<User?> user = Rx<User?>(null);
-
   @override
   void onInit() {
     super.onInit();
-    _auth.authStateChanges().listen((User? newUser) {
-      user(newUser);
+    _auth.authStateChanges().listen((User? user) {
+      if (user == null) {
+        Get.offAllNamed(Routes.AUTH);
+        Logger.info('User is currently signed out!');
+      } else {
+        Get.offAllNamed(Routes.CORE);
+        Logger.info('User is signed in!');
+      }
     });
   }
 
@@ -28,17 +35,21 @@ class FirebaseAuthService extends GetxService {
   }) async {
     try {
       onLoading(true);
-
-      final UserCredential result = await _auth.signInWithEmailAndPassword(
+      await _auth
+          .createUserWithEmailAndPassword(
         email: userModel.email!,
         password: userModel.password!,
-      );
-
-      await result.user!.updateDisplayName(userModel.name);
-      await createUserToFirestore();
-
-      onLoading(false);
-      onSuccess(result.user!);
+      )
+          .then((res) async {
+        if (res.user != null) {
+          await res.user!.sendEmailVerification();
+          await res.user!.updateDisplayName(userModel.name);
+          onSuccess(res.user!);
+        }
+        usersRef.doc(res.user!.uid).update({
+          "name": userModel.name,
+        });
+      });
     } catch (e) {
       handleAuthError(e, onLoading, onError);
       rethrow;
@@ -78,9 +89,8 @@ class FirebaseAuthService extends GetxService {
         idToken: googleSignInAuthentication.idToken,
       );
       await _auth.signInWithCredential(credential);
-      await createUserToFirestore();
     } catch (e) {
-      handleAuthError(e);
+      handleAuthError(e, null, null);
       rethrow;
     }
   }
@@ -90,34 +100,30 @@ class FirebaseAuthService extends GetxService {
       await _auth.signOut();
       await googleSignIn.signOut();
     } catch (e) {
-      handleAuthError(e);
+      handleAuthError(e, null, null);
       rethrow;
     }
   }
 
-  Future<void> createUserToFirestore() async {
-    try {
-      final User? currentUser = _auth.currentUser;
-      if (currentUser != null) {
-        await usersRef.doc(currentUser.uid).set({
-          "name": currentUser.displayName,
-          "email": currentUser.email,
-          "photoUrl": currentUser.photoURL,
-          "uid": currentUser.uid,
-          "createdAt": FieldValue.serverTimestamp(),
-        });
-      }
-    } catch (e) {
-      handleFirestoreError(e);
-      rethrow;
+  void handleAuthError(
+    dynamic error,
+    Function(bool)? onLoading,
+    Function(String)? onError,
+  ) {
+    print("=======================================");
+    if (error is FirebaseAuthException) {
+      String errorCode = error.code;
+      String errorMessage = error.message ?? "An error occurred";
+      onLoading?.call(false);
+      onError?.call(errorMessage);
+      Logger.error("FirebaseAuth error: $errorMessage");
+      FirebaseCrashlytics.instance.recordError(error, StackTrace.current);
+    } else {
+      // Handle other non-Firebase Authentication exceptions
+      onLoading?.call(false);
+      onError?.call(error.toString());
     }
-  }
-
-  void handleAuthError(dynamic error,
-      [Function(bool)? onLoading, Function(String)? onError]) {
-    onLoading?.call(false);
-    onError?.call(error.toString());
-    print("Authentication error: $error");
+    throw error;
   }
 
   void handleFirestoreError(dynamic error) {

@@ -4,20 +4,15 @@ import 'package:iamtif/app/common/theme.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class XNotifier {
-  XNotifier._internal();
-
-  static final XNotifier _instance = XNotifier._internal();
-
-  static XNotifier get instance => _instance;
-  static void snackMessage({
+  static snackMessage({
     required String title,
     required String? messages,
     required XNotifierType type,
-    num? seconds,
-    bool? isDismissible,
-    bool? isCloseButton,
-    bool? hasIcon = true,
-    SnackPosition? snackPosition = SnackPosition.TOP,
+    int seconds = 3,
+    bool isDismissible = true,
+    bool isCloseButton = true,
+    bool hasIcon = true,
+    SnackPosition snackPosition = SnackPosition.TOP,
   }) {
     Get.snackbar(
       title,
@@ -54,7 +49,7 @@ class XNotifier {
       borderRadius: 10,
       snackStyle: SnackStyle.FLOATING,
       dismissDirection: DismissDirection.horizontal,
-      duration: Duration(seconds: seconds?.toInt() ?? 3),
+      duration: Duration(seconds: seconds),
       maxWidth: Get.width,
       animationDuration: const Duration(milliseconds: 500),
       forwardAnimationCurve: Curves.easeInOutBack,

@@ -7,7 +7,7 @@ class CoreController extends GetxController {
   final scrollController = ScrollController();
   RxBool isShowBottomSheet = false.obs;
   RxInt positionBottomSheet = 0.obs;
-
+  RxInt tabIndex = 0.obs;
   @override
   void onReady() {
     // scrollController.animateTo(
@@ -38,4 +38,29 @@ class CoreController extends GetxController {
 
   @override
   void onClose() {}
+
+  Widget currentView() {
+    switch (tabIndex.value) {
+      case 0:
+        return Container(
+          color: Colors.red,
+        );
+      case 1:
+        return Container(
+          color: Colors.blue,
+        );
+      case 2:
+        return Container(
+          color: Colors.green,
+        );
+      case 3:
+        return Container(
+          color: Colors.yellow,
+        );
+      default:
+        return Container(
+          color: Colors.red,
+        );
+    }
+  }
 }

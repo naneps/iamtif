@@ -12,7 +12,20 @@
           "package_name": "com.example.iamtif"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "626721926740-dgksng02n3o7b19lap9boi2t1l4ofrrf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.iamtif",
+            "certificate_hash": "c2ebb225a382af95d1efc119c41dcaef55c1f834"
+          }
+        },
+        {
+          "client_id": "626721926740-ccra6nkfs64cdn43kul785e3k6fem4ef.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDKx58mnL6AU768l2aZkM28dY7m1vFGMjY"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "626721926740-ccra6nkfs64cdn43kul785e3k6fem4ef.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "626721926740-1qb54sn5bhejr72vs7u83r64nd7o3nk6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.iamtif"
+              }
+            }
+          ]
         }
       }
     }

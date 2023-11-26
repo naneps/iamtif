@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:iamtif/app/services/firebase/cloud_messaging_service.dart';
 import 'package:iamtif/app/services/firebase/firebase_auth_service.dart';
 
 import '../controllers/auth_controller.dart';
@@ -10,5 +11,6 @@ class AuthBinding extends Bindings {
       () => AuthController(),
     );
     Get.lazyPut<FirebaseAuthService>(() => FirebaseAuthService());
+    Get.lazyPut(() => CloudMessagingService());
   }
 }

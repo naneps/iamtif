@@ -36,7 +36,7 @@ class FormRegister extends GetView<AuthController> {
                 onTap: () {
                   Future.delayed(
                     const Duration(milliseconds: 400),
-                    () => Get.find<AuthController>().isLogin.value = true,
+                    () => controller.isLoginForm.value = true,
                   );
                   controller.tabController.animateTo(0);
                 },
@@ -58,10 +58,8 @@ class FormRegister extends GetView<AuthController> {
               }
               return null;
             },
-            onSave: (value) {
-              controller.user.update((user) {
-                user!.name = value;
-              });
+            onChanged: (value) {
+              controller.user.value.name = value;
             },
           )
               .animate(
@@ -76,10 +74,8 @@ class FormRegister extends GetView<AuthController> {
             prefixIcon: MdiIcons.emailOutline,
             labelText: 'Email',
             hintText: 'jhonDoe@xxx.com',
-            onSave: (value) {
-              controller.user.update((user) {
-                user!.email = value;
-              });
+            onChanged: (value) {
+              controller.user.value.email = value;
             },
             validator: (value) {
               if (value!.isEmpty) {
@@ -112,10 +108,8 @@ class FormRegister extends GetView<AuthController> {
                         prefixIcon: MdiIcons.lockOutline,
                         labelText: 'Password',
                         hintText: '********',
-                        onSave: (value) {
-                          controller.user.update((user) {
-                            user!.password = value;
-                          });
+                        onChanged: (value) {
+                          controller.user.value.password = value;
                         },
                         obscureText: controller.isPasswordVisible.value,
                         suffixIcon: controller.isPasswordVisible.value
@@ -152,10 +146,8 @@ class FormRegister extends GetView<AuthController> {
                   onPressSuffix: () {
                     controller.isPasswordVisible.toggle();
                   },
-                  onSave: (value) {
-                    controller.user.update((user) {
-                      user!.confirmPassword = value;
-                    });
+                  onChanged: (value) {
+                    controller.user.value.confirmPassword = value;
                   },
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -164,7 +156,7 @@ class FormRegister extends GetView<AuthController> {
                     if (value.length < 8) {
                       return 'Minimal 8 karakter ya';
                     }
-                    if (value != controller.user.value.confirmPassword) {
+                    if (value != controller.user.value.password) {
                       return 'Password nya ga sama';
                     }
 
@@ -183,21 +175,24 @@ class FormRegister extends GetView<AuthController> {
             );
           }),
           const SizedBox(height: 15),
-          XButton(
-            onPressed: () {
-              if (controller.registerFormKey.currentState!.validate()) {
-                controller.registerFormKey.currentState!.save();
-                // controller.createUserToFirestore();
-              }
-            },
-            animationDuration: const Duration(milliseconds: 500),
-            child: Text(
-              'Gas Daftar',
-              style: Get.theme.textTheme.titleLarge!.copyWith(
-                color: ThemeApp().lightColor,
-              ),
-            ),
-          )
+          Obx(() {
+            return controller.isLoading.value
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : XButton(
+                    onPressed: () {
+                      controller.signUp();
+                    },
+                    animationDuration: const Duration(milliseconds: 500),
+                    child: Text(
+                      'Daftar',
+                      style: Get.theme.textTheme.titleLarge!.copyWith(
+                        color: ThemeApp().lightColor,
+                      ),
+                    ),
+                  );
+          })
               .animate(
                 delay: const Duration(milliseconds: 300),
               )

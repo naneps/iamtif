@@ -7,6 +7,7 @@ class CloudMessagingService extends GetxService {
 
   @override
   void onInit() {
+    Logger.info("Initializing Cloud Messaging Service");
     super.onInit();
     _configureMessaging();
   }
@@ -22,7 +23,7 @@ class CloudMessagingService extends GetxService {
       // Tambahkan penanganan tindakan sesuai kebutuhan aplikasi Anda.
     });
 
-    FirebaseMessaging.onBackgroundMessage(_handleBackgroundMessage);
+    // FirebaseMessaging.onBackgroundMessage(_handleBackgroundMessage);
 
     await _firebaseMessaging.setForegroundNotificationPresentationOptions(
       alert: true,

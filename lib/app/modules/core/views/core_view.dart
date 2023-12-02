@@ -9,6 +9,15 @@ class CoreView extends GetView<CoreController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Obx(
+        () => AnimatedContainer(
+          duration: const Duration(milliseconds: 500),
+          height: controller.isShowBottomSheet.value ? 50 : 0,
+          child: Container(
+            color: Colors.red,
+          ),
+        ),
+      ),
       body: SafeArea(
         child: XContainer(
           child: controller.currentView(),

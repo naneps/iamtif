@@ -5,27 +5,14 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:iamtif/app/common/logger.dart';
 import 'package:iamtif/app/models/user_model.dart';
-import 'package:iamtif/app/routes/app_pages.dart';
+import 'package:iamtif/app/services/firebase/cloud_messaging_service.dart';
 
 class FirebaseAuthService extends GetxService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final CollectionReference usersRef =
       FirebaseFirestore.instance.collection('users');
-
-  @override
-  void onInit() {
-    super.onInit();
-    _auth.authStateChanges().listen((User? user) {
-      if (user == null) {
-        Get.offAllNamed(Routes.AUTH);
-        Logger.info('User is currently signed out!');
-      } else {
-        Get.offAllNamed(Routes.CORE);
-        Logger.info('User is signed in!');
-      }
-    });
-  }
+  final firebaseMessaging = Get.find<CloudMessagingService>();
 
   Future<void> signUpWithEmailAndPassword(
     UserModel userModel, {
@@ -69,7 +56,12 @@ class FirebaseAuthService extends GetxService {
         email: userModel.email!,
         password: userModel.password!,
       );
-
+      usersRef.doc(result.user!.uid).update({
+        "fcm": {
+          "token": await firebaseMessaging.getToken(),
+          "createdAt": FieldValue.serverTimestamp(),
+        }
+      });
       onLoading(false);
       onSuccess(result.user!);
     } catch (e) {

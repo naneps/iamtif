@@ -7,6 +7,7 @@ abstract class Routes {
   static const CORE = _Paths.CORE;
   static const INTRODUCTION = _Paths.INTRODUCTION;
   static const AUTH = _Paths.AUTH;
+  static const MEMBERSHIP = _Paths.MEMBERSHIP;
 }
 
 abstract class _Paths {
@@ -15,4 +16,5 @@ abstract class _Paths {
   static const CORE = '/core';
   static const INTRODUCTION = '/introduction';
   static const AUTH = '/auth';
+  static const MEMBERSHIP = '/membership';
 }

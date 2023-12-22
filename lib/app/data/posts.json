@@ -1,0 +1,354 @@
+{
+    "posts": [
+        {
+            "postId": 1,
+            "user": {
+                "userId": 101,
+                "username": "john_doe",
+                "fullName": "John Doe",
+                "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel"
+            },
+            "content": {
+                "text": "Just enjoyed a beautiful sunrise!",
+                "images": [
+                    "https://example.com/images/sunrise.jpg"
+                ]
+            },
+            "description": "Nature's beauty is truly mesmerizing.",
+            "createdAt": "2023-04-01T08:15:30Z",
+            "likes": {
+                "count": 15,
+                "users": [
+                    {
+                        "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel",
+                        "userId": 201,
+                        "username": "alice_smith"
+                    },
+                    {
+                        "userId": 301,
+                        "username": "bob_jones"
+                    }
+                ]
+            },
+            "hashtags": [
+                "#nature",
+                "#sunrise"
+            ]
+        },
+        {
+            "postId": 2,
+            "user": {
+                "userId": 102,
+                "username": "alice_smith",
+                "fullName": "Alice Smith",
+                "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel"
+            },
+            "content": {
+                "text": "Exploring the city lights at night!",
+                "images": [
+                    "https://example.com/images/city_night.jpg"
+                ]
+            },
+            "description": "Cityscape view from the top floor.",
+            "createdAt": "2023-04-02T20:45:22Z",
+            "likes": {
+                "count": 20,
+                "users": [
+                    {
+                        "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel",
+                        "userId": 101,
+                        "username": "john_doe"
+                    },
+                    {
+                        "userId": 302,
+                        "username": "charlie_brown"
+                    }
+                ]
+            },
+            "hashtags": [
+                "#cityscape",
+                "#nightlife"
+            ]
+        },
+        {
+            "postId": 3,
+            "user": {
+                "userId": 103,
+                "username": "bob_jones",
+                "fullName": "Bob Jones",
+                "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel"
+            },
+            "content": {
+                "text": "Catching up on some good reads.",
+                "images": [
+                    "https://example.com/images/bookshelf.jpg"
+                ]
+            },
+            "description": "Books are a man's best friend.",
+            "createdAt": "2023-04-03T12:30:45Z",
+            "likes": {
+                "count": 25,
+                "users": [
+                    {
+                        "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel",
+                        "userId": 102,
+                        "username": "alice_smith"
+                    },
+                    {
+                        "userId": 301,
+                        "username": "bob_jones"
+                    }
+                ]
+            },
+            "hashtags": [
+                "#reading",
+                "#booklover"
+            ]
+        },
+        {
+            "postId": 4,
+            "user": {
+                "userId": 104,
+                "username": "charlie_brown",
+                "fullName": "Charlie Brown",
+                "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel"
+            },
+            "content": {
+                "text": "Cooking up a storm in the kitchen!",
+                "images": [
+                    "https://example.com/images/cooking.jpg"
+                ]
+            },
+            "description": "Food is my passion.",
+            "createdAt": "2023-04-04T18:20:10Z",
+            "likes": {
+                "count": 18,
+                "users": [
+                    {
+                        "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel",
+                        "userId": 103,
+                        "username": "bob_jones"
+                    },
+                    {
+                        "userId": 301,
+                        "username": "bob_jones"
+                    }
+                ]
+            },
+            "hashtags": [
+                "#cooking",
+                "#foodie"
+            ]
+        },
+        {
+            "postId": 5,
+            "user": {
+                "userId": 105,
+                "username": "emma_davis",
+                "fullName": "Emma Davis",
+                "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel"
+            },
+            "content": {
+                "text": "Hiking in the mountains today!",
+                "images": [
+                    "https://example.com/images/mountain_hike.jpg"
+                ]
+            },
+            "description": "Feeling on top of the world.",
+            "createdAt": "2023-04-05T14:55:30Z",
+            "likes": {
+                "count": 30,
+                "users": [
+                    {
+                        "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel",
+                        "userId": 101,
+                        "username": "john_doe"
+                    },
+                    {
+                        "userId": 302,
+                        "username": "charlie_brown"
+                    }
+                ]
+            },
+            "hashtags": [
+                "#hiking",
+                "#nature"
+            ]
+        },
+        {
+            "postId": 6,
+            "user": {
+                "userId": 106,
+                "username": "grace_miller",
+                "fullName": "Grace Miller",
+                "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel"
+            },
+            "content": {
+                "text": "Chilling at the beach!",
+                "images": [
+                    "https://example.com/images/beach_chill.jpg"
+                ]
+            },
+            "description": "Sun, sand, and sea.",
+            "createdAt": "2023-04-06T22:10:15Z",
+            "likes": {
+                "count": 22,
+                "users": [
+                    {
+                        "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel",
+                        "userId": 103,
+                        "username": "bob_jones"
+                    },
+                    {
+                        "userId": 301,
+                        "username": "bob_jones"
+                    }
+                ]
+            },
+            "hashtags": [
+                "#beachlife",
+                "#relaxing"
+            ]
+        },
+        {
+            "postId": 7,
+            "user": {
+                "userId": 107,
+                "username": "henry_clark",
+                "fullName": "Henry Clark",
+                "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel"
+            },
+            "content": {
+                "text": "Gaming marathon this weekend!",
+                "images": [
+                    "https://example.com/images/gaming_setup.jpg"
+                ]
+            },
+            "description": "Leveling up!",
+            "createdAt": "2023-04-07T16:40:55Z",
+            "likes": {
+                "count": 28,
+                "users": [
+                    {
+                        "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel",
+                        "userId": 105,
+                        "username": "emma_davis"
+                    },
+                    {
+                        "userId": 302,
+                        "username": "charlie_brown"
+                    }
+                ]
+            },
+            "hashtags": [
+                "#gaming",
+                "#gamermode"
+            ]
+        },
+        {
+            "postId": 8,
+            "user": {
+                "userId": 108,
+                "username": "isabella_wilson",
+                "fullName": "Isabella Wilson",
+                "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel"
+            },
+            "content": {
+                "text": "Exploring historical sites.",
+                "images": [
+                    "https://example.com/images/historical_sites.jpg"
+                ]
+            },
+            "description": "Discovering the past.",
+            "createdAt": "2023-04-08T11:20:30Z",
+            "likes": {
+                "count": 15,
+                "users": [
+                    {
+                        "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel",
+                        "userId": 201,
+                        "username": "alice_smith"
+                    },
+                    {
+                        "userId": 301,
+                        "username": "bob_jones"
+                    }
+                ]
+            },
+            "hashtags": [
+                "#history",
+                "#exploration"
+            ]
+        },
+        {
+            "postId": 9,
+            "user": {
+                "userId": 109,
+                "username": "jason_turner",
+                "fullName": "Jason Turner",
+                "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel"
+            },
+            "content": {
+                "text": "Enjoying a cup of coffee.",
+                "images": [
+                    "https://example.com/images/coffee.jpg"
+                ]
+            },
+            "description": "Simple pleasures.",
+            "createdAt": "2023-04-09T08:05:45Z",
+            "likes": {
+                "count": 12,
+                "users": [
+                    {
+                        "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel",
+                        "userId": 105,
+                        "username": "emma_davis"
+                    },
+                    {
+                        "userId": 302,
+                        "username": "charlie_brown"
+                    }
+                ]
+            },
+            "hashtags": [
+                "#coffee",
+                "#coffeelover"
+            ]
+        },
+        {
+            "postId": 10,
+            "user": {
+                "userId": 110,
+                "username": "olivia_hall",
+                "fullName": "Olivia Hall",
+                "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel"
+            },
+            "content": {
+                "text": "Art exhibition downtown!",
+                "images": [
+                    "https://example.com/images/art_exhibition.jpg"
+                ]
+            },
+            "description": "Celebrating creativity.",
+            "createdAt": "2023-04-10T19:30:20Z",
+            "likes": {
+                "count": 25,
+                "users": [
+                    {
+                        "avatar": "https://xsgames.co/randomusers/avatar.php?g=pixel",
+                        "userId": 101,
+                        "username": "john_doe"
+                    },
+                    {
+                        "userId": 301,
+                        "username": "bob_jones"
+                    }
+                ]
+            },
+            "hashtags": [
+                "#art",
+                "#creativity"
+            ]
+        }
+    ]
+}

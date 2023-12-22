@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iamtif/app/modules/home/views/home_view.dart';
 
 class CoreController extends GetxController {
   //TODO: Implement CoreController
@@ -7,6 +8,32 @@ class CoreController extends GetxController {
   RxBool isShowBottomSheet = false.obs;
   RxInt positionBottomSheet = 0.obs;
   RxInt tabIndex = 0.obs;
+  Widget currentView() {
+    switch (tabIndex.value) {
+      case 0:
+        return const HomeView();
+      case 1:
+        return Container(
+          color: Colors.blue,
+        );
+      case 2:
+        return Container(
+          color: Colors.green,
+        );
+      case 3:
+        return Container(
+          color: Colors.yellow,
+        );
+      default:
+        return Container(
+          color: Colors.red,
+        );
+    }
+  }
+
+  @override
+  void onClose() {}
+
   @override
   void onReady() {
     // scrollController.jumpTo(
@@ -28,33 +55,5 @@ class CoreController extends GetxController {
     //   }
     // });
     super.onReady();
-  }
-
-  @override
-  void onClose() {}
-
-  Widget currentView() {
-    switch (tabIndex.value) {
-      case 0:
-        return Container(
-          color: Colors.red,
-        );
-      case 1:
-        return Container(
-          color: Colors.blue,
-        );
-      case 2:
-        return Container(
-          color: Colors.green,
-        );
-      case 3:
-        return Container(
-          color: Colors.yellow,
-        );
-      default:
-        return Container(
-          color: Colors.red,
-        );
-    }
   }
 }

@@ -17,6 +17,7 @@ class ThemeApp {
   final grayTextColor = const Color.fromARGB(255, 186, 186, 186);
   ThemeData get themeData => ThemeData(
         primaryColor: primaryColor,
+        scaffoldBackgroundColor: lightColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: GoogleFonts.inter().fontFamily,
         textTheme: TextTheme(

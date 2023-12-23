@@ -1,5 +1,7 @@
+import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:iamtif/app/common/shape/x_container.dart';
+import 'package:iamtif/app/common/theme.dart';
 import 'package:iamtif/app/models/post_model.dart';
 
 class PostWidget extends StatelessWidget {
@@ -19,6 +21,7 @@ class PostWidget extends StatelessWidget {
         border: Border.all(color: Colors.grey[300]!),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           XContainer(
             padding: const EdgeInsets.all(10),
@@ -99,6 +102,49 @@ class PostWidget extends StatelessWidget {
                 IconButton(
                   onPressed: () {},
                   icon: const Icon(Icons.bookmark_border),
+                ),
+              ],
+            ),
+          ),
+          XContainer(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  post.user!.fullName!,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                ExpandableText(
+                  post.description!,
+                  expandText: "more",
+                  collapseText: "less",
+                  maxLines: 2,
+                  animation: true,
+                  linkColor: ThemeApp().primaryColor,
+                  style: const TextStyle(
+                    fontSize: 14,
+                  ),
+                  linkEllipsis: true,
+                  linkStyle: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  post.hashtagsFormatted!,
+                  style: TextStyle(
+                    color: ThemeApp().primaryColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ],
             ),

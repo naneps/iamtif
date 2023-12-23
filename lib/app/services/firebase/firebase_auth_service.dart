@@ -14,33 +14,29 @@ class FirebaseAuthService extends GetxService {
       FirebaseFirestore.instance.collection('users');
   final firebaseMessaging = Get.find<CloudMessagingService>();
 
-  Future<void> signUpWithEmailAndPassword(
-    UserModel userModel, {
-    required Function(bool) onLoading,
-    required Function(User) onSuccess,
-    required Function(String) onError,
-  }) async {
-    try {
-      onLoading(true);
-      await _auth
-          .createUserWithEmailAndPassword(
-        email: userModel.email!,
-        password: userModel.password!,
-      )
-          .then((res) async {
-        if (res.user != null) {
-          await res.user!.sendEmailVerification();
-          await res.user!.updateDisplayName(userModel.name);
-          onSuccess(res.user!);
-        }
-        usersRef.doc(res.user!.uid).update({
-          "name": userModel.name,
-        });
-      });
-    } catch (e) {
-      handleAuthError(e, onLoading, onError);
-      rethrow;
+  void handleAuthError(
+    dynamic error,
+    Function(bool)? onLoading,
+    Function(String)? onError,
+  ) {
+    print("=======================================");
+    if (error is FirebaseAuthException) {
+      String errorCode = error.code;
+      String errorMessage = error.message ?? "An error occurred";
+      onLoading?.call(false);
+      onError?.call(errorMessage);
+      Logger.error("FirebaseAuth error: $errorMessage");
+      FirebaseCrashlytics.instance.recordError(error, StackTrace.current);
+    } else {
+      // Handle other non-Firebase Authentication exceptions
+      onLoading?.call(false);
+      onError?.call(error.toString());
     }
+    throw error;
+  }
+
+  void handleFirestoreError(dynamic error) {
+    print("Firestore error: $error");
   }
 
   Future<void> signInWithEmailAndPassword({
@@ -97,28 +93,32 @@ class FirebaseAuthService extends GetxService {
     }
   }
 
-  void handleAuthError(
-    dynamic error,
-    Function(bool)? onLoading,
-    Function(String)? onError,
-  ) {
-    print("=======================================");
-    if (error is FirebaseAuthException) {
-      String errorCode = error.code;
-      String errorMessage = error.message ?? "An error occurred";
-      onLoading?.call(false);
-      onError?.call(errorMessage);
-      Logger.error("FirebaseAuth error: $errorMessage");
-      FirebaseCrashlytics.instance.recordError(error, StackTrace.current);
-    } else {
-      // Handle other non-Firebase Authentication exceptions
-      onLoading?.call(false);
-      onError?.call(error.toString());
+  Future<void> signUpWithEmailAndPassword(
+    UserModel userModel, {
+    required Function(bool) onLoading,
+    required Function(User) onSuccess,
+    required Function(String) onError,
+  }) async {
+    try {
+      onLoading(true);
+      await _auth
+          .createUserWithEmailAndPassword(
+        email: userModel.email!,
+        password: userModel.password!,
+      )
+          .then((res) async {
+        if (res.user != null) {
+          await res.user!.sendEmailVerification();
+          await res.user!.updateDisplayName(userModel.name);
+          onSuccess(res.user!);
+        }
+        usersRef.doc(res.user!.uid).update({
+          "name": userModel.name,
+        });
+      });
+    } catch (e) {
+      handleAuthError(e, onLoading, onError);
+      rethrow;
     }
-    throw error;
-  }
-
-  void handleFirestoreError(dynamic error) {
-    print("Firestore error: $error");
   }
 }

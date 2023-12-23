@@ -95,6 +95,8 @@ class PostModel {
     }
   }
 
+  get hashtagsFormatted => hashtags!.map((e) => e).join(' ');
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['postId'] = postId;

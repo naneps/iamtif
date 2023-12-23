@@ -5,7 +5,7 @@ import 'package:iamtif/app/modules/home/views/home_view.dart';
 class CoreController extends GetxController {
   //TODO: Implement CoreController
   final scrollController = ScrollController();
-  RxBool isShowBottomSheet = false.obs;
+  RxBool isShowBottomSheet = true.obs;
   RxInt positionBottomSheet = 0.obs;
   RxInt tabIndex = 0.obs;
   Widget currentView() {

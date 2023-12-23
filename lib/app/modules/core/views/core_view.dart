@@ -11,11 +11,15 @@ class CoreView extends GetView<CoreController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: XContainer(
-        width: Get.context!.width,
-        child: Obx(() {
-          return CustomNavigationBar(
-              borderRadius: const Radius.circular(20),
+      bottomNavigationBar: Obx(() {
+        return XContainer(
+          padding: EdgeInsets.zero,
+          margin: const EdgeInsets.only(bottom: 10),
+          height: controller.isShowBottomSheet.value ? 60 : 0,
+          child: CustomNavigationBar(
+              isFloating: true,
+              opacity: 0.8,
+              borderRadius: const Radius.circular(10),
               strokeColor: ThemeApp().primaryColor,
               selectedColor: ThemeApp().primaryColor,
               onTap: (val) {
@@ -74,9 +78,9 @@ class CoreView extends GetView<CoreController> {
                     color: ThemeApp().primaryColor,
                   ),
                 ),
-              ]);
-        }),
-      ),
+              ]),
+        );
+      }),
       //   bottomSheet: Obx(
       //     () => AnimatedContainer(
       //       //   margin: const EdgeInsets.all(10),

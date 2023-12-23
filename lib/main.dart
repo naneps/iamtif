@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,22 +14,22 @@ void main() async {
   runApp(
     GetMaterialApp(
       title: "iamtif",
-      initialRoute: Routes.AUTH,
+      initialRoute: Routes.HOME,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
       onInit: () {
         // Get.put(CloudMessagingService());
         // FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
         // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-        FirebaseAuth.instance.authStateChanges().listen((User? user) {
-          if (user == null) {
-            print('User is currently signed out!');
-            Get.offAllNamed(Routes.AUTH);
-          } else {
-            print('User is signed in!');
-            Get.offAllNamed(Routes.CORE);
-          }
-        });
+        // FirebaseAuth.instance.authStateChanges().listen((User? user) {
+        //   if (user == null) {
+        //     print('User is currently signed out!');
+        //     Get.offAllNamed(Routes.AUTH);
+        //   } else {
+        //     print('User is signed in!');
+        //     Get.offAllNamed(Routes.CORE);
+        //   }
+        // });
       },
       theme: ThemeApp().themeData,
     ),

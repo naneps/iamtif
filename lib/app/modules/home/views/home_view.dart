@@ -15,6 +15,7 @@ class HomeView extends GetView<HomeController> {
             () {
               return Expanded(
                   child: ListView.builder(
+                controller: controller.scrollController,
                 padding: const EdgeInsets.all(10),
                 itemBuilder: (context, index) {
                   final post = controller.posts[index];
